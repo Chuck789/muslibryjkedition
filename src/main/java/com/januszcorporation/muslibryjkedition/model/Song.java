@@ -5,95 +5,104 @@ import java.util.HashSet;
 import java.util.Set;
 @Entity
 public class Song {
-                @Id
-                @GeneratedValue(strategy = GenerationType.AUTO)
-                private Long id;
-                private String title;
-                private String genre;
-                private String ismn;
-                private String year;
-                private String publisher;
 
-                public Song() {
-                }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private String genre;
+    private String ismn;
+    private String year;
 
-                public Song(String title, String genre, String ismn, String year, String publisher) {
-                    this.title = title;
-                    this.genre = genre;
-                    this.ismn = ismn;
-                    this.year = year;
-                    this.publisher = publisher;
-                }
+    @ManyToOne
+    private Publisher publisher;
 
-                @ManyToMany
-                private Set<Artist> artists = new HashSet<>();
+    @ManyToMany
+    private Set<Artist> artists = new HashSet<>();
 
-                public Long getId() {
-                    return id;
-                }
+    public Song() {
+    }
+    public Song(String title, String genre, String ismn, String year, Publisher publisher) {
+        this.title = title;
+        this.genre = genre;
+        this.ismn = ismn;
+        this.year = year;
+        this.publisher = publisher;
+    }
+    public Song(String title, String genre, String ismn, String year, Publisher publisher, Set<Artist> artists) {
+        this.title = title;
+        this.genre = genre;
+        this.ismn = ismn;
+        this.year = year;
+        this.publisher = publisher;
+        this.artists = artists;
+    }
 
-                public void setId(Long id) {
-                    this.id = id;
-                }
+    public String getTitle() {
+        return title;
+    }
 
-                public String getTitle() {
-                    return title;
-                }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-                public void setTitle(String title) {
-                    this.title = title;
-                }
+    public String getGenre() {
+        return genre;
+    }
 
-                public String getGenre() {
-                    return genre;
-                }
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 
-                public void setGenre(String genre) {
-                    this.genre = genre;
-                }
+    public String getIsmn() {
+        return ismn;
+    }
 
-                public String getIsmn() {
-                    return ismn;
-                }
+    public void setIsmn(String ismn) {
+        this.ismn = ismn;
+    }
 
-                public void setIsmn(String ismn) {
-                    this.ismn = ismn;
-                }
+    public String getYear() {
+        return year;
+    }
 
-                public String getYear() {
-                    return year;
-                }
+    public void setYear(String year) {
+        this.year = year;
+    }
 
-                public void setYear(String year) {
-                    this.year = year;
-                }
+    public Set<Artist> getArtists() {
+        return artists;
+    }
 
-                public String getPublisher() {
-                    return publisher;
-                }
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
+    }
 
-                public void setPublisher(String publisher) {
-                    this.publisher = publisher;
-                }
+    public Long getId() {
+        return id;
+    }
 
-                public Set<Artist> getArtists() {
-                    return artists;
-                }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-                public void setArtists(Set<Artist> artists) {
-                    this.artists = artists;
-                }
+    public Publisher getPublisher() {
+        return publisher;
+    }
 
-                @Override
-                public String toString() {
-                    return "Song{" +
-                            "id=" + id +
-                            ", title='" + title + '\'' +
-                            ", genre='" + genre + '\'' +
-                            ", ismn='" + ismn + '\'' +
-                            ", year='" + year + '\'' +
-                            ", publisher='" + publisher + '\'' +
-                            ", artists=" + artists +
-                            '}';
-                    }
-                }
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", ismn='" + ismn + '\'' +
+                ", year='" + year + '\'' +
+                ", publisher=" + publisher +
+                '}';
+    }
+}
