@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <title>All publishers</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">All Publishers</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>NIP</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                            </thead>
+                            <tr th:each="publisher : ${publishers}">
+                                <td th:text="${publisherStat.index}+1">123</td>
+                                <td th:text="${publisher.name}">The Great Company</td>
+                                <td th:text="${publisher.nip}">890-909-22-11</td>
+                                <td th:text="${publisher.address}">900 Sthacca St., 90888 Auralis, CD</td>
+                                <td>
+                                    <a href="#" th:href="@{'/publisher/' + ${publisher.id} + '/show'}" style="margin-right: 5px;">View</a>
+                                    <a href="#" th:href="@{'/publisher/' + ${publisher.id} + '/delete'}">Delete <small style="color: #f44;"><i>(not safe)</i></small></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-1">
+                <input onclick='javascript:window.history.back()' value='Back' type='button' class="btn btn-default"/>
+            </div>
+            <div class="col-md-1 col-md-offset-10">
+                <a href="#" th:href="@{'/publisher/new'}" role="button" class="btn btn-success">Add</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
